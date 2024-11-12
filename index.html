@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <link rel="icon" href="./static/img/logo.png">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <button id="musicBtn">🔇</button>
+            <div>最高得分:<span id="bestScore">0</span></div>
+            <div>P1得分:<span id="score1">0</span></div>
+            <div hidden>P2得分:<span id="score2"></span>0</div>
+        </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="set-mode">
+            <div class="select-mode">
+                <label for="mode">选择模式:</label>
+                <select id="mode">
+                    <option value="1" selected>单人模式</option>
+                    <option value="2">双人模式</option>
+                </select>
+            </div>
+            <div id="difficulty">
+                <label for="speed">游戏难度:</label>
+                <select id="speed">
+                    <option value="200" selected>简单</option>
+                    <option value="150">适中</option>
+                    <option value="100">困难</option>
+                </select>
+            </div>
+            <div class="mapsize">
+                <label for="mapsize">地图大小</label>
+                <select id="mapsize">
+                    <option value="300">小</option>
+                    <option value="400" selected>中</option>
+                    <option value="600">大</option>
+                </select>
+            </div>
+        </div>
+        <div id="color">
+            <span>蛇1的颜色</span>
+            <input type="color" id="snake1color" value="#00ff4c">
+            <span>蛇2的颜色</span>
+            <input type="color" id="snake2color" value="#008cff">
+            <span>食物的颜色</span>
+            <input type="color" id="foodcolor" value="#ff0000">
+        </div>
+        <button id="start">开始游戏</button>
+        <button id="restart">重新开始</button>
+    </div>
+    <audio id="backgroundMusic" src="./music/background.mp3" loop></audio>
+    <script src="./script/game.js"></script>
+</body>
+</html>
