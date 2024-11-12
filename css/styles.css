@@ -104,3 +104,15 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+#snake1color,
+#snake2color,
+#foodcolor {
+    width: 15px; /* 设置颜色选择器的宽度 */
+    height: 20px; /* 设置颜色选择器的高度 */
+    padding: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: #000000;
+    cursor: pointer;
+    background-color: transparent;
+}
