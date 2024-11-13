@@ -8,6 +8,34 @@ body {
     background-size: cover;
 }
 
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.login-container input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+}
+
 .container {
     position: relative;
     text-align: center;
@@ -16,14 +44,7 @@ body {
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
 }
-#musicBtn {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    background-color: white;
-}
+
 #header {
     display: flex;
     justify-content: space-between;
@@ -38,27 +59,35 @@ body {
 #bestScore {
     font-size: 18px;
 }
-.select-mode{
+
+.set-mode {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
-#difficulty{
+
+.select-mode {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: center; /* 使元素居中显示 */
 }
-.mapsize{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+
+#difficulty label,
+#mapsize label,
+#mode label {
+    font-size: 16px;
+    margin-right: 10px;
 }
 
 #gameCanvas {
     border: 2px solid #333;
 }
 
-
+#musicBtn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: wheat;
+}
 
 #start,
 #restart,
@@ -83,7 +112,7 @@ body {
 #start:not([disabled]):hover {
     color: white !important;
     background-color: rgb(84, 153, 255) !important;
-    font-weight: bolder !important;
+    font-weight: bolder !重要;
     transform: scale(1.1) !important;
     transition: 400ms !important;
 }
@@ -96,23 +125,25 @@ body {
     transition: 400ms;
 }
 
-
-#mode {
+#mode,
+#speed,
+#mapsize {
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
 }
+
 #snake1color,
 #snake2color,
 #foodcolor {
-    width: 15px; /* 设置颜色选择器的宽度 */
-    height: 20px; /* 设置颜色选择器的高度 */
+    width: 30px; /* 设置颜色选择器的宽度 */
+    height: 30px; /* 设置颜色选择器的高度 */
     padding: 0;
-    margin-left: 5px;
-    margin-right: 5px;
-    border: #000000;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: transparent;
 }
