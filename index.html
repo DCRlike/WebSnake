@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>贪吃蛇</title>
-    <link rel="icon" href="./static/img/logo.png">
+    <title>贪吃蛇游戏</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <div class="container">
+    <div id="loginContainer" class="login-container">
+        <h2>登录</h2>
+        <input type="text" id="username" placeholder="账号">
+        <input type="password" id="password" placeholder="密码">
+        <button id="loginButton">Enter</button>
+    </div>
+    <div id="gameContainer" class="container" style="display: none;">
         <div id="header">
             <button id="musicBtn">🔇</button>
             <div>最高得分:<span id="bestScore">0</span></div>
@@ -24,7 +29,7 @@
                     <option value="2">双人模式</option>
                 </select>
             </div>
-            <div id="difficulty">
+            <div class="select-mode">
                 <label for="speed">游戏难度:</label>
                 <select id="speed">
                     <option value="200" selected>简单</option>
@@ -32,7 +37,7 @@
                     <option value="100">困难</option>
                 </select>
             </div>
-            <div class="mapsize">
+            <div class="select-mode">
                 <label for="mapsize">地图大小</label>
                 <select id="mapsize">
                     <option value="300">小</option>
@@ -40,14 +45,15 @@
                     <option value="600">大</option>
                 </select>
             </div>
-        </div>
-        <div id="color">
-            <span>蛇1的颜色</span>
-            <input type="color" id="snake1color" value="#00ff4c">
-            <span>蛇2的颜色</span>
-            <input type="color" id="snake2color" value="#008cff">
-            <span>食物的颜色</span>
-            <input type="color" id="foodcolor" value="#ff0000">
+            <br>
+            <div id="color">
+                <span>蛇1的颜色</span>
+                <input type="color" id="snake1color" value="#00ff4c">
+                <span>蛇2的颜色</span>
+                <input type="color" id="snake2color" value="#008cff">
+                <span>食物的颜色</span>
+                <input type="color" id="foodcolor" value="#ff0000">
+            </div>
         </div>
         <button id="start">开始游戏</button>
         <button id="restart">重新开始</button>

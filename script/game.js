@@ -1,6 +1,20 @@
-const bestScore = document.getElementById('bestScore');
-const score1 = document.getElementById('score1');
-const score2 = document.getElementById('score2');
+// 登录逻辑
+const loginContainer = document.getElementById('loginContainer');
+const gameContainer = document.getElementById('gameContainer');
+const loginButton = document.getElementById('loginButton');
+
+loginButton.addEventListener('click', () => {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username && password) {
+        loginContainer.style.display = 'none';
+        gameContainer.style.display = 'block';
+    } else {
+        alert('请输入账号和密码');
+    }
+});
+
 // canvas.js
 const mapSelect = document.getElementById('mapsize');
 const canvas = document.getElementById('gameCanvas');
@@ -42,8 +56,7 @@ let id = parseInt(modeSelect.value);
 
 modeSelect.addEventListener('change', () => {
     id = parseInt(modeSelect.value);
-    score2.style.display = id === 2 ? 'block' : 'none';
-    bestScore.style.display = id === 2 ? 'none' : 'block';
+    console.log(id);
 });
 
 const speedSelect = document.getElementById('speed');
@@ -66,7 +79,6 @@ class Snake {
         this.dx = 0;
         this.dy = 0;
         this.directionQueue = [];
-        this.score=0;
     }
 
     draw(ctx, cell_size) {
@@ -105,7 +117,6 @@ function move(snake) {
         ctx.fillRect(food.x * cell_size, food.y * cell_size, cell_size, cell_size);
         // 食物被吃掉，生成新的食物
         food = new Food(food_color);
-        snake.score+=1;
     } else {
         snake.position.pop();
     }
@@ -133,23 +144,13 @@ function checkCollision() {
         // 检查蛇1的头是否撞到蛇2的身体
         return snake2.position.slice(1).some(segment => segment.x === head1.x && segment.y === head1.y);
     };
-    if(id===1){
-        if (checkSelfCollision(snake1)) {
-            gameOver(1, id);
-        }
-    }
-    else if (id === 2) {
+
+    if (checkSelfCollision(snake1)) {
+        gameOver(1, id);
+    } else if (id === 2) {
         if (checkSelfCollision(snake2)) {
-            gameOver(1, id);
-        }
-        else if(checkSelfCollision(snake1))
-        {
             gameOver(2, id);
-        } 
-        else if (checkSnakeCollision(snake1, snake2) ) {
-            gameOver(2, id);
-        }
-        else if(checkSnakeCollision(snake2, snake1)){
+        } else if (checkSnakeCollision(snake1, snake2) || checkSnakeCollision(snake2, snake1)) {
             gameOver(1, id);
         }
     }
@@ -183,18 +184,8 @@ const gameOver = (id, mode) => {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, mapSize, mapSize);
     clearInterval(interval);
-    
     if (mode === 1) {
-        if(parseInt(bestScore.textContent)<parseInt(score1.textContent)){
-            bestScore.textContent=score1.textContent;
-            alert('New Best Score!');
-            alert('Game Over');
-        }
-        else{
-            alert('Game Over');    
-        }
-        
-
+        alert('Game Over');
     } else if (mode === 2) {
         alert(id === 1 ? 'Player 1 Win' : 'Player 2 Win');
     }
@@ -212,6 +203,7 @@ startButton.addEventListener('click', () => {
     startButton.disabled = true;
 
     // 重新获取 id 的值
+    id = parseInt(modeSelect.value);
     console.log('Current mode:', id);
 
     interval = setInterval(() => {
@@ -220,12 +212,9 @@ startButton.addEventListener('click', () => {
         ctx.fillRect(0, 0, mapSize, mapSize);
         if (id === 1) {
             move(snake1);
-            score1.textContent = snake1.score;
         } else if (id === 2) {
             move(snake1);
             move(snake2);
-            score1.textContent = snake1.score;
-            score2.textContent = snake2.score;
         }
         food.draw(ctx, cell_size);
         snake1.draw(ctx, cell_size);
