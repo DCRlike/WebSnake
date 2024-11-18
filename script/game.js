@@ -1,8 +1,16 @@
+const setCookie = function(min){
+    let limit=new Date();
+    limit.setMinutes(limit.getMinutes()+min);
+    document.cookie="1"+limit.toUTCString()
+}
 // 登录逻辑
 const loginContainer = document.getElementById('loginContainer');
 const gameContainer = document.getElementById('gameContainer');
 const loginButton = document.getElementById('loginButton');
-
+if (document.cookie === "1") {
+    loginContainer.style.display = 'none';
+    gameContainer.style.display = 'block';
+}
 loginButton.addEventListener('click', () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -10,7 +18,10 @@ loginButton.addEventListener('click', () => {
     if (username && password) {
         loginContainer.style.display = 'none';
         gameContainer.style.display = 'block';
-    } else {
+        setCookie(10);
+    }
+
+    else {
         alert('请输入账号和密码');
     }
 });
